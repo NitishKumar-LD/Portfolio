@@ -13,13 +13,14 @@ body {
     color: white;
 }
 
+/* HEADER */
 header {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 50px;
     margin: 0;
 }
 
@@ -27,32 +28,64 @@ h2 {
     color: #4f6bff;
 }
 
+/* SECTIONS */
 .section {
-    padding: 40px 20px;
-    max-width: 900px;
+    padding: 60px 20px;
+    max-width: 1000px;
     margin: auto;
 }
 
+/* PROJECT CARDS */
 .project {
-    background: #1a2238;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 12px;
+    background: #141c2f;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: 0.3s;
 }
 
+.project:hover {
+    transform: scale(1.02);
+}
+
+/* IMAGE */
 .project img {
     width: 100%;
-    border-radius: 10px;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* CONTENT */
+.project-content {
+    padding: 20px;
+}
+
+.project h3 {
+    margin-top: 0;
 }
 
 ul {
     padding-left: 20px;
 }
 
+/* SKILLS */
+.skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.skill-box {
+    background: #141c2f;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* FOOTER */
 footer {
     text-align: center;
-    padding: 20px;
-    opacity: 0.7;
+    padding: 30px;
+    opacity: 0.6;
 }
 </style>
 </head>
@@ -62,55 +95,74 @@ footer {
 <header>
     <h1>Nitish Kumar Panda</h1>
     <h2>Level Designer</h2>
-    <p>Designing engaging gameplay spaces & player experiences</p>
+    <p>Designing gameplay spaces focused on player flow, readability & immersion</p>
 </header>
-
-<div class="section">
-    <h2>About Me</h2>
-    <p>
-        Level Designer focused on player flow, gameplay readability, and immersive environments using Unreal Engine.
-    </p>
-</div>
 
 <div class="section">
     <h2>Projects</h2>
 
+    <!-- PROJECT 1 -->
     <div class="project">
-        <h3>Co-op Level Design (Confidential)</h3>
-        <ul>
-            <li>Designed split paths for player coordination</li>
-            <li>Created shared objectives to enforce teamwork</li>
-            <li>Focused on navigation and readability</li>
-        </ul>
+        <img src="https://via.placeholder.com/800x400" alt="">
+        <div class="project-content">
+            <h3>Co-op Level Design (Confidential)</h3>
+            <ul>
+                <li>Designed split paths requiring player coordination</li>
+                <li>Created shared objectives to enforce teamwork</li>
+                <li>Focused on navigation and readability</li>
+            </ul>
+        </div>
     </div>
 
+    <!-- PROJECT 2 -->
     <div class="project">
-        <h3>3D Hustle</h3>
-        <ul>
-            <li>Designed gameplay levels focusing on player flow</li>
-            <li>Balanced exploration and challenge</li>
-            <li>Improved navigation clarity</li>
-        </ul>
+        <img src="https://via.placeholder.com/800x400" alt="">
+        <div class="project-content">
+            <h3>3D Hustle</h3>
+            <ul>
+                <li>Designed gameplay levels focusing on player flow</li>
+                <li>Balanced exploration and challenge</li>
+                <li>Improved navigation clarity</li>
+            </ul>
+        </div>
     </div>
 
+    <!-- PROJECT 3 -->
     <div class="project">
-        <h3>Psych Horror Prototype</h3>
-        <ul>
-            <li>Designed atmospheric environments</li>
-            <li>Used lighting for tension</li>
-        </ul>
+        <img src="https://via.placeholder.com/800x400" alt="">
+        <div class="project-content">
+            <h3>Psych Horror Prototype</h3>
+            <ul>
+                <li>Designed atmospheric environments</li>
+                <li>Used lighting for tension</li>
+            </ul>
+        </div>
     </div>
 
 </div>
 
 <div class="section">
     <h2>Skills</h2>
-    <ul>
-        <li>Level Design (Greyboxing, Pacing, Player Guidance)</li>
-        <li>Unreal Engine</li>
-        <li>Optimization (Nanite, LOD pipeline)</li>
-        <li>Shaders & VFX Basics</li>
-    </ul>
+
+    <div class="skills">
+        <div class="skill-box">
+            <h3>Design</h3>
+            <ul>
+                <li>Level Design (Greyboxing, Pacing, Player Guidance)</li>
+                <li>Gameplay Flow</li>
+                <li>Co-op Design</li>
+            </ul>
+        </div>
+
+        <div class="skill-box">
+            <h3>Technical</h3>
+            <ul>
+                <li>Unreal Engine</li>
+                <li>Optimization (Nanite, LOD pipeline)</li>
+                <li>Shaders & VFX Basics</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <footer>
