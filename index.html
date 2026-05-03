@@ -5,251 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nitish Kumar Panda | Level Designer</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --bg-color: #03050a;
-            --card-bg: rgba(17, 24, 39, 0.6);
-            --accent-color: #4f6bff;
-            --accent-glow: rgba(79, 107, 255, 0.3);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-        }
-
-        body {
-            margin: 0; font-family: 'Inter', sans-serif;
-            background: var(--bg-color); color: var(--text-main);
-            line-height: 1.5; overflow-x: hidden;
-        }
-
-        .aura {
-            position: fixed; width: 600px; height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            top: -200px; right: -200px; z-index: -1; filter: blur(100px);
-            animation: move 20s infinite alternate;
-        }
-
+        :root { --bg-color: #03050a; --card-bg: rgba(17, 24, 39, 0.6); --accent-color: #4f6bff; --accent-glow: rgba(79, 107, 255, 0.3); --text-main: #f8fafc; --text-dim: #94a3b8; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg-color); color: var(--text-main); line-height: 1.5; overflow-x: hidden; }
+        .aura { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); top: -200px; right: -200px; z-index: -1; filter: blur(100px); animation: move 20s infinite alternate; }
         @keyframes move { from { transform: translate(0, 0); } to { transform: translate(-200px, 400px); } }
-
         header { text-align: center; padding: 100px 20px 60px 20px; }
-
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(35px, 6vw, 60px); font-weight: 700;
-            margin: 0; letter-spacing: -2px;
-            background: linear-gradient(135deg, #ffffff 0%, #4f6bff 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
-
-        header h2 {
-            color: var(--accent-color); font-family: 'Space Grotesk', sans-serif;
-            font-weight: 400; letter-spacing: 4px;
-            text-transform: uppercase; font-size: 0.85rem; margin-top: 10px;
-        }
-
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(35px, 6vw, 60px); font-weight: 700; margin: 0; letter-spacing: -2px; background: linear-gradient(135deg, #ffffff 0%, #4f6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
+        header h2 { color: var(--accent-color); font-family: 'Space Grotesk', sans-serif; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; font-size: 0.85rem; margin-top: 10px; }
         .header-btns { margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-
         .section { max-width: 1100px; margin: auto; padding: 40px 20px; }
-
-        .project {
-            background: var(--card-bg); backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px; margin-bottom: 50px; overflow: hidden;
-            transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
+        .project { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; margin-bottom: 50px; overflow: hidden; transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .project:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-
         .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #000; }
         .image-grid img { width: 100%; height: 260px; object-fit: cover; transition: 0.8s ease; opacity: 0.85; }
         .project:hover .image-grid img { transform: scale(1.05); opacity: 1; }
-
         .project-content { padding: 35px; }
-
-        .tag {
-            font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem;
-            font-weight: 700; padding: 4px 12px; border-radius: 100px;
-            background: rgba(79, 107, 255, 0.1); color: var(--accent-color);
-            border: 1px solid rgba(79, 107, 255, 0.3); text-transform: uppercase; margin-right: 8px;
-        }
-
+        .tag { font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; font-weight: 700; padding: 4px 12px; border-radius: 100px; background: rgba(79, 107, 255, 0.1); color: var(--accent-color); border: 1px solid rgba(79, 107, 255, 0.3); text-transform: uppercase; margin-right: 8px; }
         .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 25px; }
-
-        h4 {
-            color: #fff; text-transform: uppercase; font-size: 0.8rem;
-            letter-spacing: 1px; margin: 0 0 10px 0; display: flex; align-items: center;
-        }
-
+        h4 { color: #fff; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin: 0 0 10px 0; display: flex; align-items: center; }
         h4::before { content: ""; width: 12px; height: 2px; background: var(--accent-color); margin-right: 8px; }
-
-        .btn {
-            display: inline-flex; align-items: center; padding: 10px 25px;
-            background: linear-gradient(135deg, #4f6bff 0%, #3b54d1 100%);
-            color: white; text-decoration: none; border-radius: 6px;
-            font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s;
-        }
-
-        .btn-outline {
-            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
-        }
-
+        .btn { display: inline-flex; align-items: center; padding: 10px 25px; background: linear-gradient(135deg, #4f6bff 0%, #3b54d1 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+        .btn-outline { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); }
         .btn:hover { box-shadow: 0 10px 20px rgba(79, 107, 255, 0.4); filter: brightness(1.1); }
-
         .skill-card { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
-
         footer { text-align: center; padding: 80px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
-
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-
 <body>
-
 <div class="aura"></div>
-
 <header>
     <div class="reveal">
         <h1>Nitish Kumar Panda</h1>
         <h2>Level Designer & Environment Specialist</h2>
         <div class="header-btns">
-            <!-- Replace # with your actual Google Drive PDF link later -->
-            <a href="#" class="btn">Download Resume (PDF)</a>
-            <a href="mailto:nitishkumar@email.com" class="btn btn-outline">Contact Me</a>
+            <a href="Nitish_Panda_Resume.pdf" class="btn">Download Resume (PDF)</a>
+            <a href="mailto:nitishkumar@email.com" class="btn btn-outline">Hire Me</a>
         </div>
     </div>
 </header>
-
 <div class="section">
-
     <!-- CO-OP -->
     <div class="project reveal">
         <div class="project-content">
             <span class="tag">Confidential</span> <span class="tag">Unreal Engine</span>
-            <h3 style="font-size: 1.8rem; margin: 15px 0;">Co-op Level Design</h3>
+            <h3>Co-op Level Design</h3>
             <div class="details-grid">
-                <div>
-                    <h4>Design Strategy</h4>
-                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
-                        <li>Coordinated split-path navigation for teamwork</li>
-                        <li>Environment-based synchronized puzzles</li>
-                        <li>Focus on shared objectives and dual readability</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Impact</h4>
-                    <p style="color: var(--text-dim); font-size: 0.9rem;">Designed mechanics that force player interaction through environment flow and spatial challenges.</p>
-                </div>
+                <div><h4>Design Strategy</h4><ul style="color: var(--text-dim); font-size: 0.9rem;"><li>Coordinated split-path navigation for teamwork</li><li>Environment-based synchronized puzzles</li></ul></div>
+                <div><h4>Impact</h4><p style="color: var(--text-dim); font-size: 0.9rem;">Designed mechanics that force player interaction through environment flow.</p></div>
             </div>
         </div>
     </div>
-
     <!-- Assassin -->
     <div class="project reveal">
-        <div class="image-grid">
-            <img src="Atf.png"> <img src="Atf1.png"> <img src="Atf2.png">
-        </div>
+        <div class="image-grid"><img src="Atf.png"><img src="Atf1.png"><img src="Atf2.png"></div>
         <div class="project-content">
             <span class="tag">Steam Release</span> <span class="tag">Unreal Engine</span>
-            <h3 style="font-size: 1.8rem; margin: 15px 0;">Assassin: The First List</h3>
+            <h3>Assassin: The First List</h3>
             <div class="details-grid">
-                <div>
-                    <h4>Level Architecture</h4>
-                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
-                        <li><strong>Designed 4 full stealth levels</strong> from blockout to final polish</li>
-                        <li>Non-linear paths with strategic verticality and cover</li>
-                        <li>Guard patrol route design & AI encounter zones</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Pipeline</h4>
-                    <p style="color: var(--text-dim); font-size: 0.9rem;">Managed environment composition and lighting to ensure objective clarity in dense stealth zones.</p>
-                </div>
+                <div><h4>Level Architecture</h4><ul style="color: var(--text-dim); font-size: 0.9rem;"><li><strong>Designed 4 Full Stealth Levels</strong></li><li>Strategic verticality and cover placement</li></ul></div>
+                <div><h4>Visual Guidance</h4><p style="color: var(--text-dim); font-size: 0.9rem;">Managed composition and lighting to ensure objective clarity.</p></div>
             </div>
             <a href="https://store.steampowered.com/app/2390670/ASSASSIN_The_First_List_Beta/" target="_blank" class="btn">View on Steam</a>
         </div>
     </div>
-
     <!-- 3D HUSTLE -->
     <div class="project reveal">
-        <div class="image-grid">
-            <img src="3DP.png"> <img src="3DP1.png"> <img src="3DP2.png">
-        </div>
+        <div class="image-grid"><img src="3DP.png"><img src="3DP1.png"><img src="3DP2.png"></div>
         <div class="project-content">
             <span class="tag">Itch.io Prototype</span> <span class="tag">Unreal Engine</span>
-            <h3 style="font-size: 1.8rem; margin: 15px 0;">3D Hustle</h3>
+            <h3>3D Hustle</h3>
             <div class="details-grid">
-                <div>
-                    <h4>Game & Economy Design</h4>
-                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
-                        <li><strong>Designed the complete Game Design Document (GDD)</strong></li>
-                        <li>Engineered core <strong>Economy Loop</strong> and progression systems</li>
-                        <li>Defined spatial navigation and movement mechanics</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Tech Polish</h4>
-                    <p style="color: var(--text-dim); font-size: 0.9rem;">Created high-readability traversal levels focusing on player momentum and visual signposting.</p>
-                </div>
+                <div><h4>Game & Economy Design</h4><ul style="color: var(--text-dim); font-size: 0.9rem;"><li><strong>Authored Complete GDD</strong></li><li>Designed core Economy Loop and progression</li></ul></div>
+                <div><h4>Level Flow</h4><p style="color: var(--text-dim); font-size: 0.9rem;">Ensured player momentum and intuitive mechanic teaching.</p></div>
             </div>
             <a href="https://pranavkamat.itch.io/the-3d-hustle" target="_blank" class="btn">Play Prototype</a>
         </div>
     </div>
-
     <!-- Psych Horror -->
     <div class="project reveal">
-        <div class="image-grid">
-            <img src="Horror1.png"> <img src="Horror2.png"> <img src="Horror3.png">
-        </div>
+        <div class="image-grid"><img src="Horror1.png"><img src="Horror2.png"><img src="Horror3.png"></div>
         <div class="project-content">
             <span class="tag">Atmospheric Study</span> <span class="tag">Unreal Engine</span>
-            <h3 style="font-size: 1.8rem; margin: 15px 0;">Psych Horror Prototype</h3>
+            <h3>Psych Horror Prototype</h3>
             <div class="details-grid">
-                <div>
-                    <h4>Emotional Pacing</h4>
-                    <p style="color: var(--text-dim); font-size: 0.9rem;">Controlled intensity via negative space and high-contrast volumetric lighting.</p>
-                </div>
-                <div>
-                    <h4>Lighting</h4>
-                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
-                        <li>Lumen & Dynamic Shadow implementation</li>
-                        <li>Environment-driven narrative storytelling</li>
-                    </ul>
-                </div>
+                <div><h4>Emotional Pacing</h4><p style="color: var(--text-dim); font-size: 0.9rem;">Controlled intensity via negative space and high-contrast volumetric lighting.</p></div>
+                <div><h4>Lighting</h4><ul style="color: var(--text-dim); font-size: 0.9rem;"><li>Lumen & Dynamic Shadow implementation</li><li>Environment-driven narrative storytelling</li></ul></div>
             </div>
         </div>
     </div>
-
-</div>
-
-<div class="section reveal">
-    <h2 style="font-family:'Space Grotesk'; text-transform:uppercase; letter-spacing:2px; margin-bottom:30px;">Technical Proficiency</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        <div class="skill-card">
-            <h4>Art Pipeline & Optimization</h4>
-            <p style="color: var(--text-dim);">Optimization (Nanite, LODs), Lighting (Lumen, Volumetrics), Engine Workflows.</p>
+    <!-- DYEING WORLD -->
+    <div class="project reveal">
+        <div class="image-grid"><img src="DW1.png"><img src="DW2.png"></div>
+        <div class="project-content">
+            <span class="tag">3D Platformer</span> <span class="tag">Unreal Engine</span>
+            <h3>The Dyeing World</h3>
+            <div class="details-grid">
+                <div><h4>World Navigation</h4><p style="color: var(--text-dim); font-size: 0.9rem;">Color-coded environment shapes designed to guide player movement naturally.</p></div>
+                <div><h4>Focus</h4><ul style="color: var(--text-dim); font-size: 0.9rem;"><li>Natural signposting</li><li>Balanced reward-based traversal</li></ul></div>
+            </div>
+            <a href="https://limitlesswaves.itch.io/the-dyeing-world" target="_blank" class="btn">View Project</a>
         </div>
-        <div class="skill-card">
-            <h4>Level Design</h4>
-            <p style="color: var(--text-dim);">Greyboxing/Whiteboxing, Combat Arena Pacing, Player Psychology, Flow Design.</p>
+    </div>
+    <!-- Santas Revenge (SABSE IMPORTANT) -->
+    <div class="project reveal">
+        <div class="project-content">
+            <span class="tag">Game Jam</span> <span class="tag">Unity</span>
+            <h3>Santas Revenge</h3>
+            <div class="details-grid">
+                <div><h4>Rapid Iteration</h4><p style="color: var(--text-dim); font-size: 0.9rem;">Designed a linear combat arena under a strict 48-hour deadline.</p></div>
+                <div><h4>Constraints</h4><p style="color: var(--text-dim); font-size: 0.9rem;">Managing limited asset packs to create a readable combat loop under pressure.</p></div>
+            </div>
+            <a href="https://zombi3d.itch.io/santas-revenge" target="_blank" class="btn">Play Game</a>
         </div>
     </div>
 </div>
-
-<footer>
-    <h3 style="margin: 0;">Let's Build Immersive Worlds</h3>
-    <p style="color: var(--text-dim); margin-top: 10px;">nitishkumar@email.com | <a href="#" style="color: var(--accent-color); text-decoration: none;">LinkedIn</a></p>
-</footer>
-
+<div class="section reveal">
+    <h2>Technical Proficiency</h2>
+    <div class="details-grid">
+        <div class="skill-card"><h4>Art Pipeline & Optimization</h4><p style="color: var(--text-dim);">Nanite, LODs, Lumen, Volumetrics, Engine Workflows.</p></div>
+        <div class="skill-card"><h4>Level Design</h4><p style="color: var(--text-dim);">Greyboxing, Combat Arena Pacing, Player Psychology, Flow Design.</p></div>
+    </div>
+</div>
+<footer><p>nitishkumar@email.com | <a href="#" style="color: var(--accent-color);">LinkedIn</a></p></footer>
 <script>
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
-        });
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 </script>
-
 </body>
 </html>
