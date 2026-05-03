@@ -48,7 +48,7 @@
             text-transform: uppercase; font-size: 0.85rem; margin-top: 10px;
         }
 
-        .header-btns { margin-top: 25px; display: flex; justify-content: center; gap: 15px; }
+        .header-btns { margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
 
         .section { max-width: 1100px; margin: auto; padding: 40px 20px; }
 
@@ -86,11 +86,13 @@
         .btn {
             display: inline-flex; align-items: center; padding: 10px 25px;
             background: linear-gradient(135deg, #4f6bff 0%, #3b54d1 100%);
-            color: white; text-decoration: none; border-radius: 6px; cursor: pointer;
-            font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; border: none;
+            color: white; text-decoration: none; border-radius: 6px;
+            font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s;
         }
 
-        .btn-outline { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); }
+        .btn-outline {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+        }
 
         .btn:hover { box-shadow: 0 10px 20px rgba(79, 107, 255, 0.4); filter: brightness(1.1); }
 
@@ -100,16 +102,6 @@
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* RESUME PRINT STYLES */
-        @media print {
-            body * { visibility: hidden; }
-            #resume-print, #resume-print * { visibility: visible; }
-            #resume-print { position: absolute; left: 0; top: 0; width: 100%; color: black !important; background: white !important; padding: 40px; }
-            .aura, .header-btns, footer, .btn, .image-grid { display: none !important; }
-        }
-
-        #resume-print { display: none; }
     </style>
 </head>
 
@@ -117,47 +109,37 @@
 
 <div class="aura"></div>
 
-<!-- HIDDEN RESUME FOR PRINTING -->
-<div id="resume-print" style="color: #000; font-family: Arial, sans-serif;">
-    <h1 style="color: #000; -webkit-text-fill-color: initial; background: none; font-size: 24pt;">Nitish Kumar Panda</h1>
-    <p>Level Designer & Environment Specialist | Thane, MH | nitishkumar@email.com</p>
-    <hr>
-    <h3>Technical Skills</h3>
-    <p>Unreal Engine 4/5, Unity, Nanite, LOD Pipeline, Lumen, Greyboxing, Combat Pacing, Economy Design.</p>
-    <h3>Experience</h3>
-    <p><strong>Assassin: The First List</strong> - Designed 4 stealth levels from blockout to final polish.</p>
-    <p><strong>3D Hustle</strong> - Lead Game & Economy Designer; authored complete GDD.</p>
-    <p><strong>Co-op Level Design</strong> - Developed synchronized environment-based puzzles.</p>
-</div>
-
 <header>
     <div class="reveal">
         <h1>Nitish Kumar Panda</h1>
         <h2>Level Designer & Environment Specialist</h2>
         <div class="header-btns">
-            <button onclick="window.print()" class="btn">Get Resume / PDF</button>
-            <a href="mailto:nitishkumar@email.com" class="btn btn-outline">Hire Me</a>
+            <!-- Replace # with your actual Google Drive PDF link later -->
+            <a href="#" class="btn">Download Resume (PDF)</a>
+            <a href="mailto:nitishkumar@email.com" class="btn btn-outline">Contact Me</a>
         </div>
     </div>
 </header>
 
 <div class="section">
+
     <!-- CO-OP -->
     <div class="project reveal">
         <div class="project-content">
             <span class="tag">Confidential</span> <span class="tag">Unreal Engine</span>
-            <h3>Co-op Level Design</h3>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">Co-op Level Design</h3>
             <div class="details-grid">
                 <div>
                     <h4>Design Strategy</h4>
-                    <ul>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
                         <li>Coordinated split-path navigation for teamwork</li>
                         <li>Environment-based synchronized puzzles</li>
+                        <li>Focus on shared objectives and dual readability</li>
                     </ul>
                 </div>
                 <div>
                     <h4>Impact</h4>
-                    <p>Designed mechanics that force player interaction through environment flow.</p>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Designed mechanics that force player interaction through environment flow and spatial challenges.</p>
                 </div>
             </div>
         </div>
@@ -170,18 +152,19 @@
         </div>
         <div class="project-content">
             <span class="tag">Steam Release</span> <span class="tag">Unreal Engine</span>
-            <h3>Assassin: The First List</h3>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">Assassin: The First List</h3>
             <div class="details-grid">
                 <div>
                     <h4>Level Architecture</h4>
-                    <ul>
-                        <li><strong>Designed 4 Full Stealth Levels</strong></li>
-                        <li>Strategic verticality and cover placement</li>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
+                        <li><strong>Designed 4 full stealth levels</strong> from blockout to final polish</li>
+                        <li>Non-linear paths with strategic verticality and cover</li>
+                        <li>Guard patrol route design & AI encounter zones</li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Visual Guidance</h4>
-                    <p>Managed composition and lighting to ensure objective clarity.</p>
+                    <h4>Pipeline</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Managed environment composition and lighting to ensure objective clarity in dense stealth zones.</p>
                 </div>
             </div>
             <a href="https://store.steampowered.com/app/2390670/ASSASSIN_The_First_List_Beta/" target="_blank" class="btn">View on Steam</a>
@@ -195,41 +178,68 @@
         </div>
         <div class="project-content">
             <span class="tag">Itch.io Prototype</span> <span class="tag">Unreal Engine</span>
-            <h3>3D Hustle</h3>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">3D Hustle</h3>
             <div class="details-grid">
                 <div>
                     <h4>Game & Economy Design</h4>
-                    <ul>
-                        <li><strong>Authored Complete GDD</strong></li>
-                        <li>Designed core Economy Loop and progression</li>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
+                        <li><strong>Designed the complete Game Design Document (GDD)</strong></li>
+                        <li>Engineered core <strong>Economy Loop</strong> and progression systems</li>
+                        <li>Defined spatial navigation and movement mechanics</li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Level Flow</h4>
-                    <p>Ensured player momentum and intuitive mechanic teaching.</p>
+                    <h4>Tech Polish</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Created high-readability traversal levels focusing on player momentum and visual signposting.</p>
                 </div>
             </div>
             <a href="https://pranavkamat.itch.io/the-3d-hustle" target="_blank" class="btn">Play Prototype</a>
         </div>
     </div>
+
+    <!-- Psych Horror -->
+    <div class="project reveal">
+        <div class="image-grid">
+            <img src="Horror1.png"> <img src="Horror2.png"> <img src="Horror3.png">
+        </div>
+        <div class="project-content">
+            <span class="tag">Atmospheric Study</span> <span class="tag">Unreal Engine</span>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">Psych Horror Prototype</h3>
+            <div class="details-grid">
+                <div>
+                    <h4>Emotional Pacing</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Controlled intensity via negative space and high-contrast volumetric lighting.</p>
+                </div>
+                <div>
+                    <h4>Lighting</h4>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
+                        <li>Lumen & Dynamic Shadow implementation</li>
+                        <li>Environment-driven narrative storytelling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="section reveal">
-    <h2>Technical Proficiency</h2>
-    <div class="details-grid">
+    <h2 style="font-family:'Space Grotesk'; text-transform:uppercase; letter-spacing:2px; margin-bottom:30px;">Technical Proficiency</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
         <div class="skill-card">
-            <h4>Art Pipeline</h4>
-            <p>Optimization (Nanite, LODs), Lighting (Lumen), VFX (Niagara).</p>
+            <h4>Art Pipeline & Optimization</h4>
+            <p style="color: var(--text-dim);">Optimization (Nanite, LODs), Lighting (Lumen, Volumetrics), Engine Workflows.</p>
         </div>
         <div class="skill-card">
             <h4>Level Design</h4>
-            <p>Greyboxing, Combat Arena Pacing, Player Psychology.</p>
+            <p style="color: var(--text-dim);">Greyboxing/Whiteboxing, Combat Arena Pacing, Player Psychology, Flow Design.</p>
         </div>
     </div>
 </div>
 
 <footer>
-    <p>nitishkumar@email.com | <a href="#" style="color: var(--accent-color);">LinkedIn</a></p>
+    <h3 style="margin: 0;">Let's Build Immersive Worlds</h3>
+    <p style="color: var(--text-dim); margin-top: 10px;">nitishkumar@email.com | <a href="#" style="color: var(--accent-color); text-decoration: none;">LinkedIn</a></p>
 </footer>
 
 <script>
