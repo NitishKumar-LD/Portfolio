@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitish Kumar Panda | Level Designer Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Nitish Kumar Panda | Level Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #080b12;
-            --card-bg: #111827;
+            --bg-color: #03050a;
+            --card-bg: rgba(17, 24, 39, 0.6);
             --accent-color: #4f6bff;
+            --accent-glow: rgba(79, 107, 255, 0.3);
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
         }
@@ -24,286 +25,173 @@
             overflow-x: hidden;
         }
 
-        /* Subtle Grid Background */
-        body::before {
-            content: "";
+        .aura {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(79, 107, 255, 0.03) 1px, transparent 1px), 
-                              linear-gradient(90deg, rgba(79, 107, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -200px; right: -200px;
+            z-index: -1; filter: blur(100px);
+            animation: move 20s infinite alternate;
         }
 
-        header {
-            text-align: center;
-            padding: 60px 20px 40px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        @keyframes move { from { transform: translate(0, 0); } to { transform: translate(-200px, 400px); } }
+
+        header { text-align: center; padding: 100px 20px 60px 20px; }
 
         h1 {
-            font-size: clamp(32px, 5vw, 52px);
-            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(35px, 6vw, 60px);
+            font-weight: 700;
             margin: 0;
-            letter-spacing: -1px;
-            background: linear-gradient(to right, #fff, #4f6bff);
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ffffff 0%, #4f6bff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
         }
 
         header h2 {
             color: var(--accent-color);
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 400;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin-top: 10px;
         }
 
-        .section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+        .section { max-width: 1100px; margin: auto; padding: 40px 20px; }
 
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-title::after {
-            content: "";
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            flex-grow: 1;
-        }
-
-        /* Project Cards - Tight Layout */
         .project {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            margin-bottom: 40px;
+            border-radius: 16px;
+            margin-bottom: 50px;
             overflow: hidden;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .project:hover {
             border-color: var(--accent-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transform: translateY(-4px);
+            box-shadow: 0 0 40px rgba(79, 107, 255, 0.15);
+            transform: translateY(-5px);
         }
 
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            background: #000;
-        }
+        .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #000; }
+        .image-grid img { width: 100%; height: 260px; object-fit: cover; transition: 0.8s ease; opacity: 0.85; }
+        .project:hover .image-grid img { transform: scale(1.05); opacity: 1; }
 
-        .image-grid img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            opacity: 0.9;
-            transition: 0.4s;
-        }
-
-        .project:hover .image-grid img {
-            opacity: 1;
-        }
-
-        .project-content {
-            padding: 24px;
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .project-title {
-            font-size: 1.6rem;
-            margin: 0;
-            color: var(--text-main);
-        }
-
-        .tags {
-            display: flex;
-            gap: 8px;
-        }
+        .project-content { padding: 35px; }
 
         .tag {
-            font-size: 0.65rem;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 4px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
             background: rgba(79, 107, 255, 0.1);
             color: var(--accent-color);
-            border: 1px solid rgba(79, 107, 255, 0.2);
+            border: 1px solid rgba(79, 107, 255, 0.3);
             text-transform: uppercase;
+            margin-right: 8px;
         }
 
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            color: var(--text-dim);
-            font-size: 0.95rem;
-        }
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 25px; }
 
-        .details-grid h4 {
+        h4 {
             color: #fff;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
             margin: 0 0 10px 0;
-            font-size: 1rem;
+            display: flex; align-items: center;
         }
 
-        ul {
-            padding-left: 18px;
-            margin: 0;
-        }
-
-        ul li {
-            margin-bottom: 6px;
-        }
+        h4::before { content: ""; width: 12px; height: 2px; background: var(--accent-color); margin-right: 8px; }
 
         .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: var(--accent-color);
+            display: inline-flex;
+            margin-top: 30px;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #4f6bff 0%, #3b54d1 100%);
             color: white;
             text-decoration: none;
             border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
             transition: 0.3s;
         }
 
-        .btn:hover {
-            filter: brightness(1.2);
-            box-shadow: 0 0 15px rgba(79, 107, 255, 0.4);
-        }
+        .btn:hover { box-shadow: 0 10px 20px rgba(79, 107, 255, 0.4); filter: brightness(1.1); }
 
-        /* Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+        .skill-card { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
 
-        .skill-card {
-            background: rgba(255,255,255,0.02);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+        footer { text-align: center; padding: 80px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
 
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        /* Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.6s all ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 600px) {
-            .image-grid img { height: 180px; }
-            .project-content { padding: 15px; }
-        }
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 
 <body>
 
+<div class="aura"></div>
+
 <header>
-    <h1>Nitish Kumar Panda</h1>
-    <h2>Level Designer & Environment Artist</h2>
-    <p style="color: var(--text-dim); max-width: 600px; margin: 15px auto;">Specializing in player flow, technical optimization, and immersive storytelling within Unreal Engine.</p>
+    <div class="reveal">
+        <h1>Nitish Kumar Panda</h1>
+        <h2>Level Designer & Technical Artist</h2>
+    </div>
 </header>
 
 <div class="section">
-    <h2 class="section-title">Core Projects</h2>
 
-    <!-- Assassin: The First List -->
+    <!-- Assassin -->
     <div class="project reveal">
         <div class="image-grid">
-            <img src="Atf.png">
-            <img src="Atf1.png">
-            <img src="Atf2.png">
+            <img src="Atf.png"> <img src="Atf1.png"> <img src="Atf2.png">
         </div>
         <div class="project-content">
-            <div class="project-header">
-                <h3 class="project-title">Assassin: The First List</h3>
-                <div class="tags">
-                    <span class="tag">Steam Release</span>
-                    <span class="tag">UE4/5</span>
-                </div>
-            </div>
+            <span class="tag">Steam Release</span> <span class="tag">Unreal Engine</span>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">Assassin: The First List</h3>
             <div class="details-grid">
                 <div>
-                    <h4>Level Architecture</h4>
-                    <ul>
-                        <li>Designed non-linear stealth paths</li>
-                        <li>Verticality for player advantage</li>
-                        <li>Balanced guard patrol routes</li>
+                    <h4>What I Designed</h4>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
+                        <li>Non-linear stealth level layouts</li>
+                        <li>Multi-approach navigation design</li>
+                        <li>Guard patrol and encounter flow</li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Technical Role</h4>
-                    <ul>
-                        <li>Environment flow & encounter setup</li>
-                        <li>Readability via lighting</li>
-                    </ul>
+                    <h4>Design Focus</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Enabling player agency through varied traversal paths while maintaining stealth tension via environmental storytelling.</p>
                 </div>
             </div>
-            <a href="https://store.steampowered.com/app/2390670/ASSASSIN_The_First_List_Beta/" target="_blank" class="btn">View Project</a>
+            <a href="https://store.steampowered.com/app/2390670/ASSASSIN_The_First_List_Beta/" target="_blank" class="btn">View on Steam</a>
         </div>
     </div>
 
     <!-- 3D HUSTLE -->
     <div class="project reveal">
         <div class="image-grid">
-            <img src="3DP.png">
-            <img src="3DP1.png">
-            <img src="3DP2.png">
+            <img src="3DP.png"> <img src="3DP1.png"> <img src="3DP2.png">
         </div>
         <div class="project-content">
-            <div class="project-header">
-                <h3 class="project-title">3D Hustle</h3>
-                <div class="tags">
-                    <span class="tag">Puzzle Platformer</span>
-                    <span class="tag">Unity</span>
-                </div>
-            </div>
+            <span class="tag">Puzzle Platformer</span> <span class="tag">Unreal Engine</span>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">3D Hustle</h3>
             <div class="details-grid">
                 <div>
-                    <h4>Design Focus</h4>
-                    <p>Creating seamless movement paths where players can maintain momentum while solving spatial puzzles.</p>
+                    <h4>Level Pacing</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Balanced exploration and challenge, focusing on maintaining player momentum through complex geometry.</p>
                 </div>
                 <div>
-                    <h4>Key Mechanics</h4>
-                    <ul>
-                        <li>Balanced difficulty curve</li>
-                        <li>Visual signposting for navigation</li>
+                    <h4>Visual Language</h4>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
+                        <li>High-readability navigation cues</li>
+                        <li>Intuitive mechanic teaching</li>
                     </ul>
                 </div>
             </div>
@@ -311,32 +199,24 @@
         </div>
     </div>
 
-    <!-- PSYCH HORROR -->
+    <!-- Psych Horror -->
     <div class="project reveal">
         <div class="image-grid">
-            <img src="Horror1.png">
-            <img src="Horror2.png">
-            <img src="Horror3.png">
-            <img src="Horror4.png">
+            <img src="Horror1.png"> <img src="Horror2.png"> <img src="Horror3.png">
         </div>
         <div class="project-content">
-            <div class="project-header">
-                <h3 class="project-title">Psych Horror Prototype</h3>
-                <div class="tags">
-                    <span class="tag">Atmospheric</span>
-                    <span class="tag">Lighting Study</span>
-                </div>
-            </div>
+            <span class="tag">Atmospheric Study</span> <span class="tag">Unreal Engine</span>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">Psych Horror Prototype</h3>
             <div class="details-grid">
                 <div>
                     <h4>Emotional Design</h4>
-                    <p>Using tight corridors and dynamic lighting to trigger claustrophobia and tension without relying on jumpscares.</p>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Utilized negative space and dynamic shadows to build psychological tension and control pacing.</p>
                 </div>
                 <div>
-                    <h4>Lighting Design</h4>
-                    <ul>
-                        <li>Contrast-heavy environment</li>
-                        <li>Pacing via light & shadow</li>
+                    <h4>Lighting</h4>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
+                        <li>Contrast-heavy lighting setup</li>
+                        <li>Environment-driven narrative</li>
                     </ul>
                 </div>
             </div>
@@ -346,77 +226,78 @@
     <!-- DYEING WORLD -->
     <div class="project reveal">
         <div class="image-grid">
-            <img src="DW1.png">
-            <img src="DW2.png">
+            <img src="DW1.png"> <img src="DW2.png">
         </div>
         <div class="project-content">
-            <div class="project-header">
-                <h3 class="project-title">The Dyeing World</h3>
-                <div class="tags">
-                    <span class="tag">3D Platformer</span>
-                </div>
-            </div>
+            <span class="tag">3D Platformer</span> <span class="tag">Unreal Engine</span>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">The Dyeing World</h3>
             <div class="details-grid">
                 <div>
-                    <h4>Visual Guidance</h4>
-                    <p>Using color-coded environments to help players distinguish between safe paths and hazardous zones.</p>
+                    <h4>Navigation Layout</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Designed traversal-heavy paths using color-coded shapes to guide player movement naturally.</p>
                 </div>
                 <div>
-                    <h4>Level Layout</h4>
-                    <ul>
+                    <h4>Focus</h4>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
                         <li>Open-ended exploration zones</li>
-                        <li>Reward-based traversal paths</li>
+                        <li>Clear mechanic signposting</li>
                     </ul>
                 </div>
             </div>
-            <a href="https://limitlesswaves.itch.io/the-dyeing-world" target="_blank" class="btn">View Gameplay</a>
+            <a href="https://limitlesswaves.itch.io/the-dyeing-world" target="_blank" class="btn">View Project</a>
         </div>
     </div>
+
+    <!-- Santas Revenge (GAME JAM) -->
+    <div class="project reveal">
+        <div class="project-content">
+            <span class="tag">Game Jam</span> <span class="tag">Combat Flow</span> <span class="tag">Unity</span>
+            <h3 style="font-size: 1.8rem; margin: 15px 0;">Santas Revenge</h3>
+            <div class="details-grid">
+                <div>
+                    <h4>Rapid Iteration</h4>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; padding-left: 15px;">
+                        <li>Designed linear combat arena in 48 hours</li>
+                        <li>Focused on fast-paced arena navigation</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Constraints</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Managed asset limitations to deliver a coherent and readable level experience under pressure.</p>
+                </div>
+            </div>
+            <a href="https://zombi3d.itch.io/santas-revenge" target="_blank" class="btn">Play Game</a>
+        </div>
+    </div>
+
 </div>
 
 <div class="section reveal">
-    <h2 class="section-title">Technical Proficiency</h2>
-    <div class="skills-container">
+    <h2 style="font-family:'Space Grotesk'; text-transform:uppercase; letter-spacing:2px; margin-bottom:30px;">Technical Stack</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
         <div class="skill-card">
-            <h4 style="margin-top:0;">Design Methodology</h4>
-            <ul>
-                <li>Greyboxing & Whiteboxing</li>
-                <li>Combat Encounter Pacing</li>
-                <li>Player Guidance (Weenie, Light, Color)</li>
-                <li>Co-op Coordination Design</li>
-            </ul>
+            <h4>Engines</h4>
+            <p style="color: var(--text-dim);">Unreal Engine 4/5 (Specialist), Unity Engine (Generalist).</p>
         </div>
         <div class="skill-card">
-            <h4 style="margin-top:0;">Tools & Engine</h4>
-            <ul>
-                <li>Unreal Engine 4 / 5 (Expert)</li>
-                <li>Unity Engine</li>
-                <li>Niagara VFX & Megalights</li>
-                <li>Nanite & LOD Optimization</li>
-            </ul>
+            <h4>UE Tech</h4>
+            <p style="color: var(--text-dim);">Niagara VFX, Megalights, Nanite Workflow, Lumen, LOD Optimization.</p>
         </div>
     </div>
 </div>
 
 <footer>
-    <p>Let's collaborate on the next big world.</p>
-    <p>Contact: <strong>kumarpandanitish038@gmail.com</strong> | <a href="https://www.linkedin.com/in/nitish-kumar-panda-14a707189/" style="color:var(--accent-color); text-decoration:none;">LinkedIn</a></p>
+    <h3 style="margin: 0;">Let's Build Worlds Together</h3>
+    <p style="color: var(--text-dim); margin-top: 10px;">YourEmail@gmail.com | <a href="#" style="color: var(--accent-color); text-decoration: none;">LinkedIn</a></p>
 </footer>
 
 <script>
-    function reveal() {
-        var reveals = document.querySelectorAll(".reveal");
-        for (var i = 0; i < reveals.length; i++) {
-            var windowHeight = window.innerHeight;
-            var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 100;
-            if (elementTop < windowHeight - elementVisible) {
-                reveals[i].classList.add("active");
-            }
-        }
-    }
-    window.addEventListener("scroll", reveal);
-    reveal(); // To check on load
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 </script>
 
 </body>
