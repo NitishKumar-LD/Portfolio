@@ -4,237 +4,615 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nitish Kumar Panda | Level Designer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-color: #03050a; --card-bg: rgba(17, 24, 39, 0.6); --accent-color: #4f6bff; --accent-glow: rgba(79, 107, 255, 0.3); --text-main: #f8fafc; --text-dim: #94a3b8; }
-        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg-color); color: var(--text-main); line-height: 1.4; overflow-x: hidden; }
-        .aura { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); top: -200px; right: -200px; z-index: -1; filter: blur(100px); animation: move 20s infinite alternate; }
-        @keyframes move { from { transform: translate(0, 0); } to { transform: translate(-200px, 400px); } }
-        
-        header { text-align: center; padding: 40px 20px 20px 20px; }
-        h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 5vw, 50px); font-weight: 700; margin: 0; letter-spacing: -2px; background: linear-gradient(135deg, #ffffff 0%, #4f6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
-        header h2 { color: var(--accent-color); font-family: 'Space Grotesk', sans-serif; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; font-size: 0.8rem; margin-top: 5px; }
-        
-        .header-btns { margin-top: 15px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .section { max-width: 1100px; margin: auto; padding: 15px 20px; }
-        
-        h2.section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; border-left: 4px solid var(--accent-color); padding-left: 12px; }
-        .about-text { font-size: 1.05rem; color: var(--text-dim); max-width: 850px; margin-bottom: 10px; }
-        
-        .exp-card, .project { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 15px; overflow: hidden; transition: 0.4s; }
-        .exp-card:hover, .project:hover { border-color: var(--accent-color); transform: translateY(-3px); }
-        .exp-card { padding: 20px; }
-        
-        .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #000; }
-        .image-grid img { width: 100%; height: 240px; object-fit: cover; opacity: 0.8; transition: 0.6s; }
-        .project:hover .image-grid img { opacity: 1; transform: scale(1.02); }
-        
-        .project-content { padding: 20px; }
-        .tag { font-family: 'Space Grotesk', sans-serif; font-size: 0.55rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; background: rgba(79, 107, 255, 0.1); color: var(--accent-color); border: 1px solid rgba(79, 107, 255, 0.3); text-transform: uppercase; margin-right: 5px; }
-        
-        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 15px; }
-        h4 { color: #fff; text-transform: uppercase; font-size: 0.75rem; margin: 0 0 8px 0; display: flex; align-items: center; }
-        h4::before { content: ""; width: 10px; height: 2px; background: var(--accent-color); margin-right: 6px; }
+        :root {
+            --bg: #060810;
+            --card: rgba(14, 20, 36, 0.7);
+            --accent: #4f6bff;
+            --accent2: #7c3aed;
+            --glow: rgba(79, 107, 255, 0.25);
+            --text: #f0f4ff;
+            --dim: #8892b0;
+            --border: rgba(255,255,255,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
+        /* BACKGROUND EFFECTS */
+        .bg-grid {
+            position: fixed; inset: 0; z-index: -2;
+            background-image:
+                linear-gradient(rgba(79,107,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79,107,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .bg-orb {
+            position: fixed; border-radius: 50%; filter: blur(120px);
+            z-index: -1; pointer-events: none;
+        }
+        .orb1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(79,107,255,0.15), transparent); top: -200px; right: -100px; animation: drift1 25s infinite alternate ease-in-out; }
+        .orb2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(124,58,237,0.1), transparent); bottom: 200px; left: -100px; animation: drift2 30s infinite alternate ease-in-out; }
+        @keyframes drift1 { from { transform: translate(0,0); } to { transform: translate(-150px, 300px); } }
+        @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(100px, -200px); } }
+
+        /* HEADER */
+        header {
+            padding: 80px 20px 50px;
+            text-align: center;
+            position: relative;
+        }
+        .badge {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid rgba(79,107,255,0.3);
+            background: rgba(79,107,255,0.08);
+            padding: 6px 18px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1.0;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 30%, #4f6bff 70%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            color: var(--dim);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+        .header-btns {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 28px;
+            border-radius: 8px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #4f6bff, #7c3aed);
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(79,107,255,0.4); }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid rgba(79,107,255,0.4);
+        }
+        .btn-outline:hover { background: rgba(79,107,255,0.1); transform: translateY(-2px); }
+        .btn-ghost {
+            background: rgba(255,255,255,0.04);
+            color: var(--dim);
+            border: 1px solid var(--border);
+            font-size: 0.72rem;
+        }
+        .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+
+        /* SECTIONS */
+        .section { max-width: 1100px; margin: 0 auto; padding: 20px 24px 40px; }
+        .section-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px; left: 0;
+            width: 40px; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 2px;
+        }
+
+        /* ABOUT */
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--dim);
+            max-width: 780px;
+            line-height: 1.8;
+        }
+        .about-text strong { color: var(--text); }
+
+        /* EXPERIENCE */
+        .exp-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 14px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent), var(--accent2));
+            border-radius: 3px 0 0 3px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .exp-card:hover { border-color: rgba(79,107,255,0.25); transform: translateX(4px); }
+        .exp-card:hover::before { opacity: 1; }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+        .exp-company { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+        .exp-role { color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-bottom: 10px; }
+        .exp-card ul { color: var(--dim); font-size: 0.88rem; padding-left: 18px; }
+        .exp-card li { margin-bottom: 4px; }
+        .exp-card li strong { color: var(--text); }
+
+        /* TAGS */
+        .tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: rgba(79,107,255,0.1);
+            color: var(--accent);
+            border: 1px solid rgba(79,107,255,0.25);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tag-green {
+            background: rgba(34,197,94,0.1);
+            color: #4ade80;
+            border-color: rgba(34,197,94,0.25);
+        }
+        .tag-purple {
+            background: rgba(124,58,237,0.1);
+            color: #a78bfa;
+            border-color: rgba(124,58,237,0.25);
+        }
+
+        /* SKILLS */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-        .skill-item { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
-        .skill-item b { color: var(--accent-color); display: block; margin-bottom: 3px; }
+        .skill-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            font-size: 0.88rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+        .skill-item:hover { border-color: rgba(79,107,255,0.2); }
+        .skill-item b { color: var(--accent); display: block; margin-bottom: 4px; font-family: 'Syne', sans-serif; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+        .skill-item span { color: var(--dim); }
 
-        .btn { display: inline-flex; align-items: center; padding: 10px 25px; background: linear-gradient(135deg, #4f6bff 0%, #3b54d1 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
-        .btn-outline { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); }
-        .btn:hover { box-shadow: 0 8px 15px rgba(79, 107, 255, 0.3); filter: brightness(1.1); }
-        
-        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .reveal { opacity: 0; transform: translateY(15px); transition: 0.6s all ease; }
+        /* PROJECTS */
+        .project {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            backdrop-filter: blur(12px);
+        }
+        .project:hover { border-color: rgba(79,107,255,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+        .image-grid { display: grid; gap: 2px; background: #000; }
+        .image-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .image-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .image-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .image-grid img { width: 100%; height: 220px; object-fit: cover; opacity: 0.85; transition: 0.5s; display: block; }
+        .project:hover .image-grid img { opacity: 1; }
+
+        .project-content { padding: 24px; }
+        .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .project-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 14px; color: var(--text); }
+
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 18px; }
+        .detail-block h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .detail-block h4::before { content: ''; width: 14px; height: 2px; background: var(--accent); border-radius: 2px; }
+        .detail-block p, .detail-block li { color: var(--dim); font-size: 0.85rem; line-height: 1.6; }
+        .detail-block ul { padding-left: 16px; }
+        .detail-block li { margin-bottom: 3px; }
+        .detail-block li strong { color: var(--text); }
+
+        /* DIVIDER */
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 10px 0 30px; }
+
+        /* BOTTOM SECTIONS */
+        .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            backdrop-filter: blur(8px);
+        }
+        .info-card .section-title { font-size: 1.1rem; margin-bottom: 16px; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        footer a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+        footer a:hover { opacity: 0.7; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+
+        /* REVEAL ANIMATIONS */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .image-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+            .image-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+            .image-grid img { height: 160px; }
+            h1 { letter-spacing: -2px; }
+        }
     </style>
 </head>
 <body>
-<div class="aura"></div>
 
+<div class="bg-grid"></div>
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+
+<!-- HEADER -->
 <header>
     <div class="reveal">
-        <h1>Nitish Kumar Panda</h1>
-        <h2>Level Designer & Environment Specialist</h2>
+        <div class="badge">Level Designer · UE5 · Environment Design</div>
+        <h1>Nitish Kumar<br>Panda</h1>
+        <p class="subtitle">Crafting Worlds · Player-First Design</p>
         <div class="header-btns">
-            <a href="Nitish_Kumar_Resume.pdf" class="btn">Download Resume (PDF)</a>
+            <a href="Nitish_Kumar_Resume.pdf" class="btn btn-primary">Download Resume</a>
             <a href="mailto:kumarpandanitish038@gmail.com" class="btn btn-outline">Hire Me</a>
+            <a href="https://github.com/NitishKumar-LD" target="_blank" class="btn btn-ghost">GitHub ↗</a>
         </div>
     </div>
 </header>
 
+<!-- ABOUT -->
 <div class="section reveal">
+    <div class="section-label">Who I Am</div>
     <h2 class="section-title">About Me</h2>
     <p class="about-text">
-        Level Designer specialized in crafting immersive, player-centric environments using <b>Unreal Engine 5</b>. I bridge artistic vision with technical performance, focusing on player flow, spatial storytelling, and engine optimization. Currently designing professional-grade environments at <b>Underdogs Studio</b>.
+        Level Designer with hands-on studio experience in <strong>Unreal Engine 5</strong> — focused on player flow, spatial storytelling, and environment design. I've worked on co-op puzzle levels and shipped stealth levels at studio. In the last few months I've also picked up <strong>Android game development</strong>, <strong>vibe coding with AI tools</strong>, and <strong>performance marketing basics</strong> — always pushing to grow beyond one lane.
     </p>
 </div>
 
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
 <div class="section reveal">
+    <div class="section-label">Work History</div>
     <h2 class="section-title">Experience</h2>
+
     <div class="exp-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
-            <h3 style="margin:0; color:#fff; font-size:1.1rem;">Underdogs Studio (Mumbai)</h3>
-            <span class="tag">Dec 2025 - Present</span>
+        <div class="exp-header">
+            <span class="exp-company">Underdogs Studio — Mumbai</span>
+            <span class="tag">Dec 2025 – May 2026</span>
         </div>
-        <p style="color:var(--accent-color); font-weight:600; margin:0 0 8px 0; font-size:0.9rem;">Level Designer (Remote)</p>
-        <ul style="color:var(--text-dim); font-size:0.9rem; line-height:1.4; margin:0; padding-left:18px;">
-            <li>Developing synchronized co-op puzzles requiring dual-player coordination.</li>
-            <li>Managing split-path navigation to ensure balanced engagement for both players.</li>
+        <p class="exp-role">Level Designer (Remote)</p>
+        <ul>
+            <li>Developed <strong>synchronized co-op puzzles</strong> requiring dual-player coordination.</li>
+            <li>Designed split-path navigation ensuring balanced engagement for both players.</li>
+            <li>Built and iterated greybox layouts based on playtesting feedback.</li>
         </ul>
     </div>
 
     <div class="exp-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
-            <h3 style="margin:0; color:#fff; font-size:1.1rem;">Akiyam (Gujarat)</h3>
-            <span class="tag">Feb 2023 - Jan 2024</span>
+        <div class="exp-header">
+            <span class="exp-company">Akiyam — Gujarat</span>
+            <span class="tag">Feb 2023 – Jan 2024</span>
         </div>
-        <p style="color:var(--accent-color); font-weight:600; margin:0 0 8px 0; font-size:0.9rem;">Level Designer (Assassin: The First List)</p>
-        <ul style="color:var(--text-dim); font-size:0.9rem; line-height:1.4; margin:0; padding-left:18px;">
-            <li>Designed and polished <b>4 full stealth levels</b> from blockout to high-fidelity environments.</li>
+        <p class="exp-role">Level Designer · Assassin: The First List</p>
+        <ul>
+            <li>Designed and polished <strong>4 full stealth levels</strong> from blockout to high-fidelity environments.</li>
             <li>Developed non-linear level architecture with strategic verticality for stealth gameplay.</li>
+            <li>Game shipped on <strong>Steam</strong>.</li>
         </ul>
     </div>
 </div>
 
+<div class="divider"></div>
+
+<!-- SKILLS -->
 <div class="section reveal">
+    <div class="section-label">What I Work With</div>
     <h2 class="section-title">Technical Skills</h2>
     <div class="skills-grid">
-        <div class="skill-item"><b>Engines</b> Unreal Engine 5, Unity.</div>
-        <div class="skill-item"><b>Level Design</b> Greyboxing, Player Flow, Combat Pacing.</div>
-        <div class="skill-item"><b>Tech Art</b> Optimization, LOD Management, Lighting.</div>
-        <div class="skill-item"><b>Game Design</b> GDD, Economy Loops, System Design.</div>
+        <div class="skill-item"><b>Engines</b><span>Unreal Engine 5, Unity</span></div>
+        <div class="skill-item"><b>Level Design</b><span>Greyboxing, Player Flow, Combat Pacing</span></div>
+        <div class="skill-item"><b>Tech Art</b><span>Lumen Lighting, LOD, Optimization</span></div>
+        <div class="skill-item"><b>Game Design</b><span>GDD, Economy Loops, System Design</span></div>
+        <div class="skill-item"><b>Dev Tools</b><span>Vibe Coding, AI-assisted Workflows</span></div>
+        <div class="skill-item"><b>Marketing</b><span>Google Ads, Meta Ads, ROAS, CTR</span></div>
     </div>
 </div>
 
+<div class="divider"></div>
+
+<!-- PROJECTS -->
 <div class="section">
-    <h2 class="section-title">Featured Projects</h2>
-    
+    <div class="section-label">My Work</div>
+    <h2 class="section-title reveal">Featured Projects</h2>
+
+    <!-- CO-OP PROJECT -->
     <div class="project reveal">
+        <div class="image-grid cols-4">
+            <img src="coop1.png" alt="Co-op Level Screenshot 1">
+            <img src="coop2.png" alt="Co-op Level Screenshot 2">
+            <img src="coop3.png" alt="Co-op Level Screenshot 3">
+            <img src="coop4.png" alt="Co-op Level Screenshot 4">
+        </div>
         <div class="project-content">
-            <span class="tag">Studio Project(Confidential)</span> <span class="tag">Unreal Engine</span>
-            <h3 style="margin:10px 0;">Co-op Level & Game Design</h3>
+            <div class="project-tags">
+                <span class="tag">Underdogs Studio</span>
+                <span class="tag">Unreal Engine 5</span>
+                <span class="tag tag-purple">Co-op Design</span>
+            </div>
+            <p class="project-title">Co-op Puzzle Level — Underdogs Studio</p>
             <div class="details-grid">
-                <div>
+                <div class="detail-block">
                     <h4>Design Strategy</h4>
-                    <ul style="color: var(--text-dim); font-size: 0.85rem; padding-left:15px;">
-                        <li>Coordinated split-path navigation for teamwork</li>
-                        <li>Environment-based synchronized puzzles</li>
+                    <ul>
+                        <li><strong>Split-path navigation</strong> for dual-player coordination</li>
+                        <li>Environment-based synchronized puzzle design</li>
+                        <li>Greybox → iteration → polish pipeline</li>
                     </ul>
                 </div>
-                <div>
-                    <h4>Studio Impact</h4>
-                    <p style="color: var(--text-dim); font-size: 0.85rem;">Contributed to high-quality co-op mechanics under studio guidelines at Underdogs.</p>
+                <div class="detail-block">
+                    <h4>Focus Areas</h4>
+                    <p>Designed levels that force meaningful teamwork — neither player can progress alone. Emphasis on readable spaces and intuitive co-op flow.</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ASSASSIN -->
     <div class="project reveal">
-        <div class="image-grid"><img src="Atf.png"><img src="Atf1.png"><img src="Atf2.png"></div>
+        <div class="image-grid cols-3">
+            <img src="Atf.png" alt="Assassin Level 1">
+            <img src="Atf1.png" alt="Assassin Level 2">
+            <img src="Atf2.png" alt="Assassin Level 3">
+        </div>
         <div class="project-content">
-            <span class="tag">Akiyam, Gujarat</span> <span class="tag">Steam Release</span>
-            <h3 style="margin:10px 0;">Assassin: The First List</h3>
+            <div class="project-tags">
+                <span class="tag">Akiyam Gujarat</span>
+                <span class="tag tag-green">Steam Release</span>
+            </div>
+            <p class="project-title">Assassin: The First List</p>
             <div class="details-grid">
-                <div>
+                <div class="detail-block">
                     <h4>Level Architecture</h4>
-                    <ul style="color: var(--text-dim); font-size: 0.85rem; padding-left:15px;">
-                        <li><b>Designed 4 Full Stealth Levels</b></li>
-                        <li>Strategic verticality and cover placement</li>
+                    <ul>
+                        <li><strong>4 full stealth levels</strong> designed & polished</li>
+                        <li>Non-linear paths with strategic verticality</li>
+                        <li>Cover placement for stealth gameplay loops</li>
                     </ul>
                 </div>
-                <div>
-                    <h4>Professional Pipeline</h4>
-                    <p style="color: var(--text-dim); font-size: 0.85rem;">Shipped industry-standard stealth levels as part of the Akiyam team.</p>
+                <div class="detail-block">
+                    <h4>Pipeline</h4>
+                    <p>Full blockout to high-fidelity environment pipeline as part of the Akiyam team. Game shipped on Steam.</p>
                 </div>
             </div>
-            <a href="https://store.steampowered.com/app/2390670/ASSASSIN_The_First_List_Beta/" target="_blank" class="btn" style="margin-top:15px;">View on Steam</a>
+            <a href="https://store.steampowered.com/app/2390670/ASSASSIN_The_First_List_Beta/" target="_blank" class="btn btn-primary">View on Steam ↗</a>
         </div>
     </div>
-    
+
+    <!-- 3D HUSTLE -->
     <div class="project reveal">
-        <div class="image-grid"><img src="3DP.png"><img src="3DP1.png"><img src="3DP2.png"></div>
+        <div class="image-grid cols-3">
+            <img src="3DP.png" alt="3D Hustle 1">
+            <img src="3DP1.png" alt="3D Hustle 2">
+            <img src="3DP2.png" alt="3D Hustle 3">
+        </div>
         <div class="project-content">
-            <span class="tag">Unreal Engine</span> <span class="tag">Itch.io</span>
-            <h3 style="margin:10px 0;">3D Hustle</h3>
+            <div class="project-tags">
+                <span class="tag">Unreal Engine</span>
+                <span class="tag">Itch.io</span>
+            </div>
+            <p class="project-title">3D Hustle</p>
             <div class="details-grid">
-                <div>
+                <div class="detail-block">
                     <h4>Game & Economy Design</h4>
-                    <ul style="color: var(--text-dim); font-size: 0.85rem; padding-left:15px;">
-                        <li><b>Authored Complete GDD</b></li>
-                        <li>Designed core Economy Loop</li>
+                    <ul>
+                        <li><strong>Authored complete GDD</strong> — see link below</li>
+                        <li>Designed core economy loop</li>
+                        <li>Platforming geometry optimized for player momentum</li>
                     </ul>
                 </div>
-                <div>
+                <div class="detail-block">
                     <h4>Level Flow</h4>
-                    <p style="color: var(--text-dim); font-size: 0.85rem;">Optimized platforming geometry to maintain player momentum.</p>
+                    <p>Focused on maintaining player momentum through carefully paced platforming geometry and intuitive spatial layout.</p>
                 </div>
             </div>
-            <a href="https://pranavkamat.itch.io/the-3d-hustle" target="_blank" class="btn" style="margin-top:15px;">Play Itch.io</a>
-        </div>
-    </div>
-
-    <div class="project reveal">
-        <div class="image-grid"><img src="Horror1.png"><img src="Horror2.png"><img src="Horror3.png"></div>
-        <div class="project-content">
-            <span class="tag">Unreal Engine</span> <span class="tag">Lumen</span>
-            <h3 style="margin:10px 0;">Psych Horror Prototype</h3>
-            <div class="details-grid">
-                <div><h4>Emotional Pacing</h4><p style="color: var(--text-dim); font-size: 0.85rem;">Controlled intensity via negative space and high-contrast lighting.</p></div>
-                <div><h4>Lighting</h4><p style="color: var(--text-dim); font-size: 0.85rem;">Lumen & Dynamic Shadow implementation for storytelling.</p></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="https://pranavkamat.itch.io/the-3d-hustle" target="_blank" class="btn btn-primary">Play on Itch.io ↗</a>
+                <a href="https://docs.google.com/document/d/1zH1rW08jF3_QYRxq7emW00WzOABPqaACaSbNgphtx4I/edit?usp=sharing" target="_blank" class="btn btn-outline">View GDD ↗</a>
             </div>
         </div>
     </div>
 
+    <!-- PSYCH HORROR -->
     <div class="project reveal">
-        <div class="image-grid"><img src="DW1.png"><img src="DW2.png"></div>
+        <div class="image-grid cols-3">
+            <img src="Horror1.png" alt="Horror Level 1">
+            <img src="Horror2.png" alt="Horror Level 2">
+            <img src="Horror3.png" alt="Horror Level 3">
+        </div>
         <div class="project-content">
-            <span class="tag">3D Platformer</span> <span class="tag">Unreal Engine</span>
-            <h3 style="margin:10px 0;">The Dyeing World</h3>
-            <div class="details-grid">
-                <div><h4>Navigation</h4><p style="color: var(--text-dim); font-size: 0.85rem;">Color-coded environment shapes designed to guide movement naturally.</p></div>
-                <div><h4>Mechanics</h4><p style="color: var(--text-dim); font-size: 0.85rem;">Natural signposting and balanced reward traversal.</p></div>
+            <div class="project-tags">
+                <span class="tag">Unreal Engine 5</span>
+                <span class="tag tag-purple">Lumen Lighting</span>
+                <span class="tag tag-purple">Prototype</span>
             </div>
-            <a href="https://limitlesswaves.itch.io/the-dyeing-world" target="_blank" class="btn" style="margin-top:15px;">View Project</a>
+            <p class="project-title">Psychological Horror Prototype</p>
+            <div class="details-grid">
+                <div class="detail-block">
+                    <h4>Emotional Pacing</h4>
+                    <p>Controlled intensity using negative space and high-contrast lighting to build dread without explicit threat.</p>
+                </div>
+                <div class="detail-block">
+                    <h4>Lighting</h4>
+                    <p>Lumen & dynamic shadow implementation used as narrative tool — light tells the story before the player does.</p>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- DYEING WORLD -->
+    <div class="project reveal">
+        <div class="image-grid cols-2">
+            <img src="DW1.png" alt="Dyeing World 1">
+            <img src="DW2.png" alt="Dyeing World 2">
+        </div>
+        <div class="project-content">
+            <div class="project-tags">
+                <span class="tag">3D Platformer</span>
+                <span class="tag">Unreal Engine</span>
+                <span class="tag">Itch.io</span>
+            </div>
+            <p class="project-title">The Dyeing World</p>
+            <div class="details-grid">
+                <div class="detail-block">
+                    <h4>Navigation Design</h4>
+                    <p>Color-coded environment shapes designed to guide movement naturally — no UI waypoints needed.</p>
+                </div>
+                <div class="detail-block">
+                    <h4>Mechanics</h4>
+                    <p>Natural signposting with balanced reward traversal — every jump feels intentional.</p>
+                </div>
+            </div>
+            <a href="https://limitlesswaves.itch.io/the-dyeing-world" target="_blank" class="btn btn-primary">View Project ↗</a>
+        </div>
+    </div>
+
+    <!-- SANTA'S REVENGE -->
     <div class="project reveal">
         <div class="project-content">
-            <span class="tag">Game Jam</span> <span class="tag">Unity</span>
-            <h3 style="margin:10px 0;">Santas Revenge</h3>
-            <div class="details-grid">
-                <div><h4>Rapid Iteration</h4><p style="color: var(--text-dim); font-size: 0.85rem;">Designed a linear combat arena under a strict 48-hour deadline.</p></div>
-                <div><h4>Arena Design</h4><p style="color: var(--text-dim); font-size: 0.85rem;">Managed asset packs to create a readable combat loop.</p></div>
+            <div class="project-tags">
+                <span class="tag">Game Jam</span>
+                <span class="tag">Unity</span>
+                <span class="tag">48 Hours</span>
             </div>
-            <a href="https://zombi3d.itch.io/santas-revenge" target="_blank" class="btn" style="margin-top:15px;">Play Game</a>
+            <p class="project-title">Santa's Revenge</p>
+            <div class="details-grid">
+                <div class="detail-block">
+                    <h4>Rapid Iteration</h4>
+                    <p>Designed a complete linear combat arena under a strict 48-hour game jam deadline.</p>
+                </div>
+                <div class="detail-block">
+                    <h4>Arena Design</h4>
+                    <p>Managed asset packs to create a readable combat loop with clear spatial hierarchy.</p>
+                </div>
+            </div>
+            <a href="https://zombi3d.itch.io/santas-revenge" target="_blank" class="btn btn-primary">Play Game ↗</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- EDUCATION + CERTS -->
+<div class="section reveal">
+    <div class="two-col">
+        <div class="info-card">
+            <div class="section-label">Education</div>
+            <h2 class="section-title">Degree</h2>
+            <p style="color:var(--text); font-weight:600; font-family:'Syne',sans-serif;">KIIT University, Bhubaneswar</p>
+            <p style="color:var(--dim); font-size:0.85rem; margin-top:4px;">Master of Computer Applications (MCA)</p>
+            <p style="color:var(--dim); font-size:0.8rem; margin-top:2px;">2022 – 2024</p>
+        </div>
+        <div class="info-card">
+            <div class="section-label">Certifications</div>
+            <h2 class="section-title">Certs</h2>
+            <p style="color:var(--text); font-weight:600; font-family:'Syne',sans-serif;">Gamer2Maker</p>
+            <p style="color:var(--dim); font-size:0.85rem; margin-top:4px;">Game Design Certification</p>
+            <p style="color:var(--dim); font-size:0.8rem; margin-top:2px;">2024 – 2025</p>
         </div>
     </div>
 </div>
 
-<div class="section reveal" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
-    <div>
-        <h2 class="section-title">Education</h2>
-        <p style="margin:0; color:#fff; font-size:0.95rem;"><b>KIIT University</b>, Bhubaneswar</p>
-        <p style="margin:0; color:var(--text-dim); font-size:0.85rem;">Master's Degree (2022-2024)</p>
-    </div>
-    <div>
-        <h2 class="section-title">Certificates</h2>
-        <p style="margin:0; color:#fff; font-size:0.95rem;"><b>Gamer2Maker</b></p>
-        <p style="margin:0; color:var(--text-dim); font-size:0.85rem;">Game Design Certification (2024-2025)</p>
-    </div>
-</div>
-
+<!-- FOOTER -->
 <footer>
-    <p style="font-size:0.9rem;">kumarpandanitish038@gmail.com | <a href="https://www.linkedin.com/in/nitish-kumar-panda-14a707189/" style="color:var(--accent-color); text-decoration:none;">LinkedIn Profile</a></p>
-    <p style="font-size:0.75rem; color:var(--text-dim); margin-top:15px;">© 2026 Nitish Kumar Panda. Portfolio built for the Industry.</p>
+    <div class="footer-links">
+        <a href="mailto:kumarpandanitish038@gmail.com">kumarpandanitish038@gmail.com</a>
+        <a href="https://www.linkedin.com/in/nitish-kumar-panda-14a707189/" target="_blank">LinkedIn ↗</a>
+        <a href="https://github.com/NitishKumar-LD" target="_blank">GitHub ↗</a>
+    </div>
+    <p style="font-size:0.75rem; color:var(--dim);">© 2026 Nitish Kumar Panda. Built for the Industry.</p>
 </footer>
 
 <script>
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
